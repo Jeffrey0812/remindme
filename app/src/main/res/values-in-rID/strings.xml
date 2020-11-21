@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Remind Me</string>
+    <string name="save">SIMPAN</string>
+    <string name="delete">HAPUS</string>
+    <string name="title_label">Judul Tugas</string>
+    <string name="description_label">Deskripsi Tugas</string>
+    <string name="date_label">Tanggal</string>
+    <string name="time_label">Pukul</string>
+    <string name="createTodo">Buat todo</string>
+    <string name="EditTodo">Sunting Todo</string>
+    <string name="item_title">Judul Tugas</string>
+    <string name="item_date">Tanggal Tugas</string>
+    <string name="item_time">Pukul Tugas</string>
+    <string name="pleaseEnterTitle">Masukkan judul tugas</string>
+    <string name="search">Cari</string>
+    <string name="item_description">"Deskripsi "</string>
+    <string name="category_title_label">Nama Kategori</string>
+    <string name="category_title">Nama Kategori</string>
+    <string name="EditCategory">Sunting Kategori</string>
+    <string name="createCategory">Buat Kategori</string>
+    <string name="pleaseEnterCategory">Masukkan kategori</string>
+    <string name="add_image">Masukkan Gambar</string>
+    <string name="pleaseEnterDate">Masukkan tanggal</string>
+    <string name="pleaseEnterTime">Masukkan pukul</string>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/todo_nav"
+        android:title="Todo"
+        android:icon="@drawable/ic_baseline_todo"/>
+
+    <item
+        android:id="@+id/category_nav"
+        android:title="Category"
+        android:icon="@drawable/ic_baseline_category"/>
+
+</menu>

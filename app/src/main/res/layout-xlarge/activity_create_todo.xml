@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/title_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dip"
+            android:layout_marginTop="3dip"
+            android:hint="@string/title_label"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/title_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/description_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dip"
+            android:layout_marginTop="3dip"
+            android:hint="@string/description_label"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/description_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine|textFilter" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/category_field"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginBottom="5dip"
+            android:layout_marginTop="5dip"
+            android:singleLine="true"
+            android:background="@drawable/box"
+            android:minHeight="150dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dip"
+            android:layout_marginTop="5dip">
+
+                <TextView
+                    android:id="@+id/date_field"
+                    android:layout_width="170dp"
+                    android:layout_height="55dp"
+                    android:background="@drawable/box"
+                    android:gravity="center|start"
+                    android:paddingStart="15dp"
+                    android:paddingLeft="15dp"
+                    android:text="@string/date_label"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/time_field"
+                    android:layout_width="170dp"
+                    android:layout_height="55dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/box"
+                    android:gravity="center|start"
+                    android:paddingStart="15dp"
+                    android:paddingLeft="15dp"
+                    android:text="@string/time_label"
+                    android:textSize="17sp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_image"
+            android:layout_width="wrap_content"
+            android:text="@string/add_image"
+            android:layout_height="60dp"
+            app:icon="@drawable/ic_baseline_image"
+            />
+
+        <LinearLayout
+            android:id="@+id/content_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <ImageView
+                android:id="@+id/image_View"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_centerInParent="true"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:contentDescription="Todo Image" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center|bottom"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/button_save"
+                android:layout_height="60dp"
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:text="@string/save"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

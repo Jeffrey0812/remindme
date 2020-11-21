@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Remind Me</string>
+
+    <string name="save">SAVE</string>
+    <string name="delete">DELETE</string>
+
+    <string name="title_label">Task Title</string>
+    <string name="description_label">Task Description</string>
+    <string name="date_label">Date</string>
+    <string name="time_label">Time</string>
+
+    <string name="EditTodo">Edit Todo</string>
+    <string name="createTodo">Create Todo</string>
+
+    <string name="item_title">Task Title</string>
+    <string name="item_date">Task Date</string>
+    <string name="item_time">Task Time</string>
+    <string name="add_image">Add Image</string>
+
+    <string name="pleaseEnterTitle">Please enter task title</string>
+    <string name="pleaseEnterDate">Please enter date</string>
+    <string name="pleaseEnterTime">Please enter time</string>
+
+    <string name="search">Search</string>
+
+    <string name="item_description">Item Description</string>
+    <string name="category_title_label">Category Name</string>
+    <string name="category_title">Category Name</string>
+    <string name="EditCategory">Edit Category</string>
+    <string name="createCategory">Create Category</string>
+    <string name="pleaseEnterCategory">Please enter category</string>
+
+</resources>
