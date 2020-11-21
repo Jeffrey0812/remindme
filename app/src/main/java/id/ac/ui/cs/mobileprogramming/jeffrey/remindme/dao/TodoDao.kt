@@ -7,7 +7,7 @@ import id.ac.ui.cs.mobileprogramming.jeffrey.remindme.entity.Todo
 @Dao
 interface TodoDao {
 
-    @Query("SELECT * FROM todo_table order by date DESC, time ASC")
+    @Query("SELECT * FROM todo_table order by date ASC, time ASC")
     fun getTodos(): LiveData<List<Todo>>
 
     @Query("SELECT * FROM todo_table where todoId = :todoId")

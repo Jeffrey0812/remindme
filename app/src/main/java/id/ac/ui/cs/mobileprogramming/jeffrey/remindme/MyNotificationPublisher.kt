@@ -26,7 +26,4 @@ class MyNotificationPublisher : BroadcastReceiver() {
         notificationManager.notify(id, notification)
     }
 
-
-
-
 }
