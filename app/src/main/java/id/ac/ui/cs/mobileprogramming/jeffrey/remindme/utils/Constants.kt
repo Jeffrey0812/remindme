@@ -11,4 +11,5 @@ object Constants {
     const val NOTIFICATION_ID = "notification-id"
     const val NOTIFICATION = "notification"
     const val pickImage = 100
+    const val REQUEST_PERMISSION_CODE = 101
 }

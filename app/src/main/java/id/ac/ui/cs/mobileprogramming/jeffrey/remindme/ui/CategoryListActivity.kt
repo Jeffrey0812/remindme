@@ -4,15 +4,18 @@ import android.app.Activity
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import id.ac.ui.cs.mobileprogramming.jeffrey.remindme.GLActivity
 import id.ac.ui.cs.mobileprogramming.jeffrey.remindme.R
 import id.ac.ui.cs.mobileprogramming.jeffrey.remindme.entity.Category
 import id.ac.ui.cs.mobileprogramming.jeffrey.remindme.utils.Constants
@@ -24,6 +27,10 @@ class CategoryListActivity : AppCompatActivity(), CategoryListAdapter.CategoryEv
     private lateinit var searchView: SearchView
     private lateinit var categoryAdapter: CategoryListAdapter
 
+    init {
+        System.loadLibrary("native-lib")
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category_list)
@@ -32,14 +39,19 @@ class CategoryListActivity : AppCompatActivity(), CategoryListAdapter.CategoryEv
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigation.selectedItemId = R.id.category_nav
 
-        bottomNavigation.setOnNavigationItemSelectedListener {item ->
+        bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.todo_nav -> {
-                    startActivity( Intent(applicationContext, TodoListActivity::class.java) )
+                    startActivity(Intent(applicationContext, TodoListActivity::class.java))
                     overridePendingTransition(0, 0)
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.category_nav -> {
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.opengl_nav -> {
+                    startActivity(Intent(applicationContext, GLActivity::class.java))
+                    overridePendingTransition(0, 0)
                     return@setOnNavigationItemSelectedListener true
                 }
             }
@@ -88,13 +100,47 @@ class CategoryListActivity : AppCompatActivity(), CategoryListAdapter.CategoryEv
             val category = data?.getParcelableExtra<Category>(Constants.INTENT_OBJECT)!!
             when (requestCode) {
                 Constants.INTENT_CREATE_CATEGORY -> {
-                    categoryViewModel.insertCategory(category)
+                    if (haveNetwork()) {
+                        categoryViewModel.insertCategory(category)
+                    } else if (!haveNetwork()) {
+                        Toast.makeText(
+                            this,
+                            errorFromJNI(),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
                 }
                 Constants.INTENT_UPDATE_CATEGORY -> {
-                    categoryViewModel.updateCategory(category)
+                    if (haveNetwork()) {
+                        categoryViewModel.updateCategory(category)
+                    } else if (!haveNetwork()) {
+                        Toast.makeText(
+                            this,
+                            errorFromJNI(),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
             }
         }
+    }
+
+    private fun haveNetwork(): Boolean {
+        var haveWIFI = false
+        var haveMobileData = false
+        val connectivityManager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfos = connectivityManager.allNetworkInfo
+        for (info in networkInfos) {
+            if (info.typeName.equals("WIFI", ignoreCase = true)) if (info.isConnected) haveWIFI =
+                true
+            if (info.typeName.equals(
+                    "MOBILE DATA",
+                    ignoreCase = true
+                )
+            ) if (info.isConnected) haveMobileData = true
+        }
+        return haveWIFI || haveMobileData
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -102,14 +148,17 @@ class CategoryListActivity : AppCompatActivity(), CategoryListAdapter.CategoryEv
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         searchView = menu?.findItem(R.id.search_todo)
             ?.actionView as SearchView
-        searchView.setSearchableInfo(searchManager
-            .getSearchableInfo(componentName))
+        searchView.setSearchableInfo(
+            searchManager
+                .getSearchableInfo(componentName)
+        )
         searchView.maxWidth = Integer.MAX_VALUE
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 categoryAdapter.filter.filter(query)
                 return false
             }
+
             override fun onQueryTextChange(newText: String?): Boolean {
                 categoryAdapter.filter.filter(newText)
                 return false
@@ -131,5 +180,7 @@ class CategoryListActivity : AppCompatActivity(), CategoryListAdapter.CategoryEv
         }
         super.onBackPressed()
     }
+
+    private external fun errorFromJNI(): String
 
 }

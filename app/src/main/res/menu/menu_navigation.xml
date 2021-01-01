@@ -11,4 +11,9 @@
         android:title="Category"
         android:icon="@drawable/ic_baseline_category"/>
 
+    <item
+        android:id="@+id/opengl_nav"
+        android:title="OpenGL"
+        android:icon="@drawable/ic_baseline_image"/>
+
 </menu>
